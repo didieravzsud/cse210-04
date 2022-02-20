@@ -59,6 +59,18 @@ class Point:
         """
         return self._y
 
+    def set_x(self, x):
+        """Sets the horizontal distance.
+        
+        """
+        self._x = x
+
+    def set_y(self, y):
+        """Sets the vertical distance.
+        
+        """
+        self._y = y
+
     def scale(self, factor):
         """
         Scales the point by the provided factor.
