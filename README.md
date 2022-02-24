@@ -16,10 +16,10 @@
 # Extra Functionality
 
 1. We have added additional classes to represent the following object:
-	a. Emerald - represented by letter "E" and scores +2
-	b. Ruby - represented by letter "R" and scores +5
-	c. Diamond - represented by letter "D" and scores +10
-	d. TNT - represented by character "!" and scores -10
+...	a. Emerald - represented by letter "E" and scores +2
+...	b. Ruby - represented by letter "R" and scores +5
+...	c. Diamond - represented by letter "D" and scores +10
+...	d. TNT - represented by character "!" and scores -10
 2. We have added a cave represented by the letter "C". If the user catches the cave, 5 more rocks and 5 more gems are created in the game.  The cave is never removed and can be visited when ever the user desires.
 3. We added an end of game congratulations.  When all gems, emeralds, rubies, and diamonds are collected, the user receives a special message. The user can continue the came if he catches the cave and adds more gems.
 4. We have added more flexibility to the player.  He can now come up from the bottom a short distance to find gems.
