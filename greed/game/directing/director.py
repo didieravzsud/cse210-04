@@ -1,3 +1,10 @@
+import random
+from game.shared.color import Color
+from game.shared.point import Point
+from game.shared.velocity import Velocity
+from game.casting.rock import Rock
+from game.casting.gem import Gem
+
 class Director:
     """A person who directs the game. 
     
@@ -49,32 +56,113 @@ class Director:
         """
         score = cast.get_first_actor("score")
         player = cast.get_first_actor("player")
-        artifacts = cast.get_actors("artifacts")
         rocks = cast.get_actors("rocks")
+        tnts = cast.get_actors("tnts")
         gems = cast.get_actors("gems")
-        # player.set_text("")
+        emeralds = cast.get_actors("emeralds")
+        rubies = cast.get_actors("rubies")
+        diamonds = cast.get_actors("diamonds")
+        caves = cast.get_actors("caves")
+
         max_x = self._video_service.get_width()
         max_y = self._video_service.get_height()
         player.move_next(max_x, max_y)
         
         for rock in rocks:
             if player.get_position().equals(rock.get_position()):
-                player.score_rock()
-                score.set_text("Score: " + str(player.get_score()))
-                cast.remove_actor("rocks", rock)  
-            rock.move_next(max_x, max_y)
+                player.score_rock() 
+                score.set_text("Score: " + str(player.get_score()))   
+                cast.remove_actor("rocks", rock) 
+
+            rock.move_next(max_x, max_y)  
+        
+        for tnt in tnts:
+            if player.get_position().equals(tnt.get_position()):
+                player.score_tnt() 
+                score.set_text("Score: " + str(player.get_score()))   
+                cast.remove_actor("tnts", tnt) 
+
+            tnt.move_next(max_x, max_y)  
+
         for gem in gems:
-            # player_position = str(player.get_position())
-            # print(player.)
-            # bottom_range  = player_position - 5
-            # top_range  = player_position + 5
-            # gem_position = gem.get_position()
             if player.get_position().equals(gem.get_position()):
-            # if gem_position in range(bottom_range, top_range):
-                player.score_gem()
-                score.set_text("Score: " + str(player.get_score()))
-                cast.remove_actor("gems", gem)  
-            gem.move_next(max_x, max_y)
+                player.score_gem()   
+                score.set_text("Score: " + str(player.get_score()))    
+                cast.remove_actor("gems", gem) 
+            gem.move_next(max_x, max_y)  
+        
+        for emerald in emeralds:
+            if player.get_position().equals(emerald.get_position()):
+                player.score_emerald()   
+                score.set_text("Score: " + str(player.get_score()))    
+                cast.remove_actor("emeralds", emerald) 
+            emerald.move_next(max_x, max_y)  
+        
+        for ruby in rubies:
+            if player.get_position().equals(ruby.get_position()):
+                player.score_ruby()   
+                score.set_text("Score: " + str(player.get_score()))    
+                cast.remove_actor("rubies", ruby) 
+            ruby.move_next(max_x, max_y)  
+        
+        for diamond in diamonds:
+            if player.get_position().equals(diamond.get_position()):
+                player.score_diamond()   
+                score.set_text("Score: " + str(player.get_score()))    
+                cast.remove_actor("diamonds", diamond) 
+            diamond.move_next(max_x, max_y)  
+        
+        for cave in caves:
+            if player.get_position().equals(cave.get_position()):
+                for n in range(5):
+                    self.create_rocks(cast)
+                    self.create_gems(cast)
+
+            cave.move_next(max_x, max_y)  
+        
+        if len(gems) == 0 and len(emeralds) == 0 and len(rubies) == 0 and len(diamonds) == 0:
+            score.set_text("You have collected all the gems! Well done! Your Score: " + str(player.get_score()) + "  Close window to end game.")    
+
+    def create_rocks(self, cast):
+        x = random.randint(1, 60 - 1)
+        y = random.randint(1, 40 - 1)
+        position = Point(x, y)
+        position = position.scale(15)
+        speed = Velocity(0, 1)
+
+        r = random.randint(100, 255)
+        g = random.randint(100, 255)
+        b = random.randint(100, 255)
+        color = Color(r, g, b)
+        
+        rock = Rock()
+        rock.set_text("O")
+        rock.set_font_size(15)
+        rock.set_color(color)
+        rock.set_position(position)
+        rock.set_velocity(speed)
+        cast.add_actor("rocks", rock)
+
+    def create_gems(self, cast):
+        x = random.randint(1, 60 - 1)
+        y = random.randint(1, 40 - 1)
+        position = Point(x, y)
+        position = position.scale(15)
+        speed = Velocity(0, 1)
+
+        r = random.randint(100, 255)
+        g = random.randint(100, 255)
+        b = random.randint(100, 255)
+        color = Color(r, g, b)
+        
+        gem = Gem()
+        gem.set_text("*")
+        gem.set_font_size(15)
+        gem.set_color(color)
+        gem.set_position(position)
+        gem.set_velocity(speed)
+        cast.add_actor("gems", gem)
+
     def _do_outputs(self, cast):
         """Draws the actors on the screen.
         

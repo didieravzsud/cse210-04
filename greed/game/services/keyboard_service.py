@@ -1,5 +1,5 @@
 import pyray
-from game.shared.point import Point
+from game.shared.velocity import Velocity
 
 
 class KeyboardService:
@@ -24,7 +24,7 @@ class KeyboardService:
         """Gets the selected direction based on the currently pressed keys.
 
         Returns:
-            Point: The selected direction.
+            Velocity: The selected direction.
         """
         dx = 0
         dy = 0
@@ -37,11 +37,12 @@ class KeyboardService:
         
         if pyray.is_key_down(pyray.KEY_UP):
             dy = -1
-        
+            
         if pyray.is_key_down(pyray.KEY_DOWN):
             dy = 1
-
-        direction = Point(dx, dy)
+        
+        
+        direction = Velocity(dx, dy)
         direction = direction.scale(self._cell_size)
         
         return direction

@@ -45,7 +45,7 @@ class Velocity:
             factor (int): The amount to scale.
             
         Returns:
-            Point: A new Velocity that is scaled.
+            Velocity: A new Velocity that is scaled.
         """
         return Velocity(self._dx * factor, self._dy * factor) 
 

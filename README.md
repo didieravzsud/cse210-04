@@ -21,7 +21,7 @@
 	c. Diamond - represented by letter "D" and scores +10
 	d. TNT - represented by character "!" and scores -10
 2. We have added a cave represented by the letter "C". If the user catches the cave, 5 more rocks and 5 more gems are created in the game.  The cave is never removed and can be visited when ever the user desires.
-3. We added an end of game congratulations.  When all gems, emeralds, rubies, and diamonds are collected, the user receives a special message.
+3. We added an end of game congratulations.  When all gems, emeralds, rubies, and diamonds are collected, the user receives a special message. The user can continue the came if he catches the cave and adds more gems.
 4. We have added more flexibility to the player.  He can now come up from the bottom a short distance to find gems.
 
 # Files
@@ -31,7 +31,11 @@ director.py
 actor.py
 cast.py
 rock.py
+tnt.py
 gem.py
+emerald.py
+ruby.py
+diamond.py
 player.py
 point.py
 velocity.py

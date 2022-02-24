@@ -3,12 +3,12 @@ from game.shared.point import Point
 from game.shared.velocity import Velocity
 
 
+
 class Actor:
     """A visible, moveable thing that participates in the game. 
     
     The responsibility of Actor is to keep track of its appearance, position and velocity in 2d 
     space.
-
     Attributes:
         _text (string): The text to display
         _font_size (int): The font size to use.
@@ -37,7 +37,7 @@ class Actor:
         """Gets the actor's font size.
         
         Returns:
-            Point: The actor's font size.
+            font_size (int): The actor's font size.
         """
         return self._font_size
 
@@ -74,6 +74,10 @@ class Actor:
         """
         x = (self._position.get_x() + self._velocity.get_dx()) % max_x
         y = (self._position.get_y() + self._velocity.get_dy()) % max_y
+        if (self._text == "#" and y > 575):
+            y = 575
+        if (self._text == "#" and y < 500):
+            y = 500
         self._position = Point(x, y)
     
     def set_color(self, color):
